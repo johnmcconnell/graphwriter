@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html> 
+<head>
+	<title>Flow Dev</title>
+</head>
+<body>
+	<script type="text/x-handlebars">
+		<div class="jumbotron">
+			<div class="container">
+				<h1>Flow Dev</h1>
+				<p>create a graph. give it to your local
+				software engineer.
+				</p>
+			</div>
+		</div>
+		{{outlet}}
+	</script>
+		
+	<script type="text/x-handlebars" id="graph">
+		<div class="row">
+			<div class="col-md-12">
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2" height="900px" id="graph-view">
+				{{#each node in nodes}}
+					{{render "node" node}}
+				{{/each}}
+				{{#each edge in edges}}
+					{{render "edge" edge}}
+				{{/each}}
+			</div>
+		</div>
+	</script>
+	
+	<script type="text/x-handlebars" id="edge">
+		<div {{bind-attr style=css}} {{bind-attr edge-id=id}}>
+		</div>
+		<div class="input-component" {{bind-attr style=tcss}}>
+			<div class="btn-group btn-group-xs">
+				<button type="button" class="btn btn-danger" {{bind-attr edge-id=id}} method="delete-edge">
+					<span class="glyphicon glyphicon-remove label-danger"></span>
+				</button>
+			</div>
+			{{input type="text" placeholder="answer" value=text edge-id=id}}
+		</div>
+	</script>
+				
+	<script type="text/x-handlebars" id="node">
+		<div {{bind-attr style=css}}>
+			<div class="btn-group btn-group-xs">
+				<button type="button" class="btn btn-primary" {{bind-attr node-id=id}} method="add-edge">
+					<span class="glyphicon glyphicon-resize-full label-primary"></span>
+				</button>
+				<button type="button" class="btn btn-danger" {{bind-attr node-id=id}} method="delete-node">
+					<span class="glyphicon glyphicon-remove label-danger"></span>
+				</button>
+			</div>
+			{{textarea placeholder="question" value=text node-id=id}}
+		</div>
+	</script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" 
+		charset="utf-8">
+	</script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" 
+	href="css/bootstrap.min.css" charset="utf-8">
+	
+	<link rel="stylesheet" 
+	href="css/app.css" charset="utf-8">
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script language="javascript" type="text/javascript" src="js/bootstrap.min.js" charset="utf-8">
+	</script>
+	
+	<script language="javascript" type="text/javascript" src="js/handlebars-v1.3.0.js" charset="utf-8">
+	</script>
+	<script language="javascript" type="text/javascript" src="js/ember-1.2.0.js" charset="utf-8">
+	</script>
+
+	<script language="javascript" type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8">
+	</script>
+	
+	<script language="javascript" type="text/javascript" src="js/jem.js" charset="utf-8">
+	</script>
+	<script language="javascript" type="text/javascript" src="js/graphwriter-app.js" charset="utf-8">
+	</script>
+</body>
+</html>
