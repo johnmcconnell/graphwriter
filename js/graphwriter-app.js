@@ -173,6 +173,16 @@ GraphWriterApp.GraphController = Ember.ObjectController.extend({
 			var nodes = this.get('nodes');
 			var node = nodes.findBy('id',id);
 			nodes.removeObject(node);
+			var edges = this.get('edges');
+			for (var i = 0; i < edges.length; i++) {
+				var edge = edges[i];
+				if (edge.node1.id == id) {
+					edges.removeObject(edge);
+				}
+				if (edge.node2.id == id) {
+					edges.removeObject(edge);
+				}
+			}
 		},
 		deleteEdge : function(id) {
 			var edges = this.get('edges');

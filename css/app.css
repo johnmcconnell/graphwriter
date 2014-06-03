@@ -2,3 +2,7 @@
 	min-height:900px;
 	background-color: LightGrey;
 }
+
+span.glyphicon-arrow-left {
+    font-size: 1.6em;
+}
